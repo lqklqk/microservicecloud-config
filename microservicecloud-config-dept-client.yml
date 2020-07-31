@@ -1,0 +1,78 @@
+spring:
+  profiles:
+    active: 
+      - dev
+---
+server:
+  port: 8001
+spring:
+  profiles: dev
+  application:
+    name: microservicecloud-dept
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/scloud?serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    dbcp2:
+      min-idle: 5                     #数据库连接池的最小维持连接数
+      initial-size: 5                 #初始化连接数
+      max-total: 5                    #最大连接数
+      max-wait-millis: 200            #等待连接获取的最大超时时间
+
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-package: com.lqk.microservicecloudapi.entities
+  mapper-locations: classpath:mybatis/mapper/*.xml
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka
+  instance:
+    instance-id: dept-8001.com    #自定义服务名称信息
+    prefer-ip-address: true   #访问路径可以显示IP地址
+
+info:
+  app.name: lqk-microservicecloud-springcloudconfig01
+  company.name: www.lqk.com
+  build.artifactId: "@project.artifactId@"
+  build.version: "@project.version@"
+---
+server:
+  port: 8001
+spring:
+  profiles: test
+  application:
+    name: microservicecloud-dept
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/scloud2?serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    dbcp2:
+      min-idle: 5                     #数据库连接池的最小维持连接数
+      initial-size: 5                 #初始化连接数
+      max-total: 5                    #最大连接数
+      max-wait-millis: 200            #等待连接获取的最大超时时间
+
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-package: com.lqk.microservicecloudapi.entities
+  mapper-locations: classpath:mybatis/mapper/*.xml
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka
+  instance:
+    instance-id: dept-8001.com    #自定义服务名称信息
+    prefer-ip-address: true   #访问路径可以显示IP地址
+
+info:
+  app.name: lqk-microservicecloud-springcloudconfig01
+  company.name: www.lqk.com
+  build.artifactId: "@project.artifactId@"
+  build.version: "@project.version@"
